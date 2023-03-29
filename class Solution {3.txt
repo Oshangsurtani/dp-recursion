@@ -1,0 +1,43 @@
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root==NULL){
+            return NULL;
+        }
+        invertTree(root->left);
+        invertTree(root->right);
+        TreeNode* temp=root->right;
+        root->right=root->left;
+        root->left=temp;
+        return root;
+    }
+};
+
+/* 
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == NULL) return NULL;
+        // swap(invertTree(root->left), invertTree(root->right));
+        invertTree(root->left); //calling the left subtree
+        invertTree(root->right); //calling the right subtree
+        TreeNode* temp = root->left; //swap both
+        root->left = root->right;
+        root->right = temp;
+        return root;
+    }
+};
+*/
+/*
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root != NULL) {
+            TreeNode *right = invertTree(root->right);
+            TreeNode *left = invertTree(root->left);
+            root->left = right;
+            root->right = left;
+        }
+        return root;
+    }
+};*/
